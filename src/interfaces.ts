@@ -1,3 +1,5 @@
+import App from './App'
+
 export interface coords{
     lon: string | number,
     lat: number | string

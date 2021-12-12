@@ -1,7 +1,8 @@
-import React from 'react';
+import React from "react";
 import './App.css';
+import {name} from './interfaces'
 
-const App = () => {
+function App() {
 
     //Get User Position Basically
     navigator.geolocation.getCurrentPosition(function (position) {
@@ -20,18 +21,19 @@ const App = () => {
                 return response.json();
             })
             .then(data => {
-               console.log(data)
+                console.log(data)
             })
             .catch(console.error)
+
     });
-    return (
-        <div>
-            <h1>Test Test 123 123</h1>
-            <h2>This is an noew hets</h2>
-        </div>
-    )
+    return(
+      <div>
+        <h1>test</h1>
+      </div>
+    );
+
 
 }
-
 export default App;
+
 

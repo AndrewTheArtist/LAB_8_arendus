@@ -39,7 +39,7 @@ const App = () => {
 
 
     function bigCityInfo() {
-        //Get User Position Basically
+        //Get City name and Country Code
         navigator.geolocation.getCurrentPosition(function (position) {
             console.log("Latitude is :", position.coords.latitude);
             console.log("Longitude is :", position.coords.longitude);
@@ -59,6 +59,7 @@ const App = () => {
                 })
                 .then(data => {
                     setCityData(data)
+                    console.log(data)
                 })
                 .catch(console.error)
         });
@@ -67,9 +68,14 @@ const App = () => {
 
 
     let fetchCityName = function () {
-        if (CityData.name !== undefined && CityData.name.length > 0) {
-            console.log(CityData.name)
+        if (CityData.name ) {
             return CityData.name;
+        }
+    }
+
+    let fetchCountryCode = function () {
+        if (CityData.sys !== undefined) {
+            return CityData.sys.country;
         }
     }
 
@@ -92,59 +98,70 @@ const App = () => {
         }
     }
     return (
+
         <div>
-
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap');
+                @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+            </style>
             <div>
-                <h1>This is My app I sell it for 500 Uero</h1>
-                <button onClick={() => {
-                    bigWeatherInfo();
-                    bigCityInfo();
-                }}>watch clout
-                </button>
-                <table className="title">
-                    <h3>{fetchCityName()}</h3>
-                    <tbody>
-                    <tr>
-                        <th>Day</th>
-                        <th>Description</th>
-                        <th>day Temp</th>
-                        <th>night Temp</th>
-                    </tr>
-                    <tr>
-                        <td>Day 1</td>
-                        <td>{fetchDescription(0)}</td>
-                        <td>{fetchDayTemp(0)}</td>
-                        <td>{fetchNightTemp(0)}</td>
+                <h1 className="Header-title">Weather Boy 5000  ™</h1>
 
-                    </tr>
-                    <tr>
-                        <td>Day 2</td>
-                        <td>{fetchDescription(1)}</td>
-                        <td>{fetchDayTemp(1)}</td>
-                        <td>{fetchNightTemp(1)}</td>
-                    </tr>
-                    <tr>
-                        <td>Day 3</td>
-                        <td>{fetchDescription(2)}</td>
-                        <td>{fetchDayTemp(2)}</td>
-                        <td>{fetchNightTemp(2)}</td>
-                    </tr>
-                    <tr>
-                        <td>Day 4</td>
-                        <td>{fetchDescription(3)}</td>
-                        <td>{fetchDayTemp(3)}</td>
-                        <td>{fetchNightTemp(3)}</td>
-                    </tr>
-                    <tr>
-                        <td>Day 5</td>
-                        <td>{fetchDescription(4)}</td>
-                        <td>{fetchDayTemp(4)}</td>
-                        <td>{fetchNightTemp(4)}</td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div className="button-wrapper">
+                    <button onClick={() => {
+                        bigWeatherInfo();
+                        bigCityInfo();
+                    }}>Watch Clout
+                    </button>
+                </div>
+                <div className="weather-data-box">
+
+                    <h3 className="city-name">{fetchCountryCode() + ', ' + fetchCityName()}</h3>
+
+                    <table className="data-table">
+                        <tbody>
+                        <tr>
+                            <th>Day</th>
+                            <th>Description</th>
+                            <th>day Temp</th>
+                            <th>night Temp</th>
+                        </tr>
+                        <tr>
+                            <td>Today</td>
+                            <td>{fetchDescription(0)}</td>
+                            <td>{fetchDayTemp(0)}</td>
+                            <td>{fetchNightTemp(0)}</td>
+
+                        </tr>
+                        <tr>
+                            <td>Tomorrow</td>
+                            <td>{fetchDescription(1)}</td>
+                            <td>{fetchDayTemp(1)}</td>
+                            <td>{fetchNightTemp(1)}</td>
+                        </tr>
+                        <tr>
+                            <td>Day 3</td>
+                            <td>{fetchDescription(2)}</td>
+                            <td>{fetchDayTemp(2)}</td>
+                            <td>{fetchNightTemp(2)}</td>
+                        </tr>
+                        <tr>
+                            <td>Day 4</td>
+                            <td>{fetchDescription(3)}</td>
+                            <td>{fetchDayTemp(3)}</td>
+                            <td>{fetchNightTemp(3)}</td>
+                        </tr>
+                        <tr>
+                            <td>Day 5</td>
+                            <td>{fetchDescription(4)}</td>
+                            <td>{fetchDayTemp(4)}</td>
+                            <td>{fetchNightTemp(4)}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
             </div>
-            <h2>This is an noew hets</h2>
         </div>
     )
 }

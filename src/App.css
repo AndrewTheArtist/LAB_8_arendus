@@ -1,8 +1,81 @@
-body{
-  background-color: lightblue;
+
+body {
+    background-color: lightblue;
+
+    background-image: url(wallpaper.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
 }
 
-.title{
-  margin-top:200px;
-  text-align: center;
+
+.Header-title {
+    color: white;
+    font-family: 'Lobster', cursive;
+    font-size: 40px;
+    margin: 20px 0 0 40px;
+    text-shadow: 0 0 3px lightblue, 0 0 5px black;
 }
+
+.button-wrapper {
+    text-align: center;
+}
+
+button{
+    background-color: white;
+    color: black;
+    margin-top: 50px;
+    padding: 7px 26px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 22px;
+    border: 3px solid grey;
+    border-radius: 25px;
+    opacity: 0.7;
+    transition-duration: 0.4s;
+}
+.button:hover {
+    background-color: yellow;
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+.weather-data-box {
+    background-color: white;
+    opacity: 0.7;
+    padding: 20px;
+    margin: 25px 350px 0 350px;
+    border: 3px solid grey;
+    border-radius: 25px;
+    height: 350px;
+}
+
+
+
+.city-name {
+    margin-top: 0;
+    color: black;
+    font-family: 'Barlow', sans-serif;
+    font-size: 36px;
+}
+
+.data-table {
+    height: 250px;
+    width: 790px;
+    border: 3px solid grey
+}
+
+tr {
+    text-align: center;
+}
+
+
+.title {
+    margin-top: 200px;
+    text-align: center;
+}
+
+

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import './App.css';
+//import './App.css';
+import MapGL from "./Map";
 
 const App = () => {
 
@@ -68,7 +69,7 @@ const App = () => {
 
 
     let fetchCityName = function () {
-        if (CityData.name ) {
+        if (CityData.name) {
             return CityData.name;
         }
     }
@@ -97,6 +98,9 @@ const App = () => {
             return Math.round((weatherData.daily[index].temp.night - 273.15) * 100) / 100 + ' C°';
         }
     }
+
+
+
     return (
 
         <div>
@@ -104,8 +108,18 @@ const App = () => {
                 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap');
                 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
             </style>
+
             <div>
-                <h1 className="Header-title">Weather Boy 5000  ™</h1>
+                <h1 className="Header-title">Weather Boy 5000 ™</h1>
+
+                <div>
+                    <button onClick={() => {
+                        MapGL();
+                    }}>Deploy fortnite
+                    </button>
+
+                </div>
+
 
                 <div className="button-wrapper">
                     <button onClick={() => {
@@ -114,6 +128,7 @@ const App = () => {
                     }}>Watch Clout
                     </button>
                 </div>
+
                 <div className="weather-data-box">
 
                     <h3 className="city-name">{fetchCountryCode() + ', ' + fetchCityName()}</h3>
@@ -159,7 +174,6 @@ const App = () => {
                         </tr>
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>

@@ -1,8 +1,25 @@
 import React, {useState} from 'react';
-//import './App.css';
-import MapGL from "./Map";
+import {MapContainer, TileLayer, Marker, Popup, useMapEvents} from 'react-leaflet'
+import './App.css';
+import './index.css'
 
 const App = () => {
+
+
+    function chungHomeMap() {
+
+        return (
+            <MapContainer center={[51.505, -0.09]} zoom={12} scrollWheelZoom={true} id={"map"}>
+                <TileLayer
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                />
+
+            </MapContainer>
+
+        );
+    }
+
 
     let [weatherData, setWeatherData]: any = useState([]);
     let [CityData, setCityData]: any = useState([]);
@@ -67,7 +84,6 @@ const App = () => {
 
     }
 
-
     let fetchCityName = function () {
         if (CityData.name) {
             return CityData.name;
@@ -100,7 +116,6 @@ const App = () => {
     }
 
 
-
     return (
 
         <div>
@@ -109,16 +124,18 @@ const App = () => {
                 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
             </style>
 
+            <link
+                rel="stylesheet"
+                href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+                integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+                crossOrigin=""
+            />
+
+
             <div>
                 <h1 className="Header-title">Weather Boy 5000 ™</h1>
 
-                <div>
-                    <button onClick={() => {
-                        MapGL();
-                    }}>Deploy fortnite
-                    </button>
-
-                </div>
+                {chungHomeMap()}
 
 
                 <div className="button-wrapper">
@@ -175,8 +192,11 @@ const App = () => {
                         </tbody>
                     </table>
                 </div>
+
             </div>
         </div>
+
+
     )
 }
 export default App;

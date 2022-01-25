@@ -1,22 +1,79 @@
 import React, {useState} from 'react';
-import {MapContainer, TileLayer, Marker, Popup, useMapEvents} from 'react-leaflet'
+import {Icon} from "leaflet";
+import {MapContainer, Marker, Popup, TileLayer, useMapEvents} from "react-leaflet";
 import './App.css';
 import './index.css'
 
-const App = () => {
+
+export default function App() {
+
+    function AnotherOne() {
+       useMapEvents({
+            click: (e) => {
+                console.log(e.latlng.lat)
+                console.log(e.latlng.lng)
+                let lat = e.latlng.lat
+                let lng = e.latlng.lng
+                let key = process.env.REACT_APP_KEY
+                let url = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&appid=${key}`
+                let urlBigger =  `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${key}`
+
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(response.statusText)
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        setWeatherData(data)
+                        //console.log(weatherData)
+                        console.log(data)
+                    })
+                    .catch(console.error)
 
 
-    function chungHomeMap() {
+                fetch(urlBigger)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(response.statusText)
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        setCityData(data)
+                        //console.log(weatherData)
+                        console.log(data)
+                    })
+                    .catch(console.error)
+
+            }
+        })
+        return null
+    }
+
+    function ChungHomeMap() {
+        new Icon({
+            iconUrl: "/skateboarding.svg",
+            iconSize: [25, 25]
+        });
 
         return (
-            <MapContainer center={[51.505, -0.09]} zoom={12} scrollWheelZoom={true} id={"map"}>
+            <MapContainer center={[58.370850, 26.714720]}
+                          zoom={3}
+                          scrollWheelZoom={true}
+                          id={"map"}
+            >
+
+                <AnotherOne/>
+
+                <Marker position={[58.377983, 26.729038]}>
+                </Marker>
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 />
-
             </MapContainer>
-
         );
     }
 
@@ -52,6 +109,7 @@ const App = () => {
         }, () => {
             alert("In order to use this app you must share your location")
         });
+
 
     }
 
@@ -118,6 +176,7 @@ const App = () => {
 
     return (
 
+
         <div>
             <style>
                 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap');
@@ -135,7 +194,8 @@ const App = () => {
             <div>
                 <h1 className="Header-title">Weather Boy 5000 ™</h1>
 
-                {chungHomeMap()}
+
+                <ChungHomeMap/>
 
 
                 <div className="button-wrapper">
@@ -199,4 +259,4 @@ const App = () => {
 
     )
 }
-export default App;
+

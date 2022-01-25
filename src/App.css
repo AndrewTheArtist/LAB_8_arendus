@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    background-image: url(wallpaper.jpg);
 }
 
 #map {
@@ -29,7 +30,7 @@ button {
     cursor: pointer;
     background-color: white;
     color: black;
-    margin-top: 10vh;
+    margin-top: 50px;
     padding: 7px 26px;
     text-align: center;
     text-decoration: none;
